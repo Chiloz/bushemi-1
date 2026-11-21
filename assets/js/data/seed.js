@@ -42,13 +42,6 @@ window.BV = window.BV || {};
           stats: { rating: 4.7, reviews: 19, visits: 140, responseMin: 35, acceptRate: 88 },
           availability: { days: [1, 1, 1, 1, 1, 1, 0], shifts: ['afternoon', 'evening'], blocked: [], online: true },
           verification: ver(IND5, 44, { registration: REG('NMCZ', '0933', 300) }) },
-        { id: 'p_joseph', model: 'independent', type: 'doctor', title: 'General Doctor', name: 'Dr. Joseph Phiri', phone: '+260 96 000 0103', joined: 2022,
-          bio: 'Family doctor with twelve years of experience. Home visits and video consultations for the whole family.',
-          years: 12, languages: ['English'], areas: ['Woodlands', 'Kabulonga', 'Roma', 'Olympia Park', 'Rhodes Park'], specialties: ['Family medicine', 'Chronic conditions'],
-          services: [{ id: 'doctor-home', rate: 650 }, { id: 'doctor-video', rate: 220 }],
-          stats: { rating: 4.9, reviews: 88, visits: 640, responseMin: 25, acceptRate: 91 },
-          availability: { days: [1, 1, 1, 1, 1, 1, 0], shifts: ['morning', 'afternoon', 'evening'], blocked: [], online: true },
-          verification: ver(IND5, 120, { registration: REG('HPCZ', '2201', 150) }) },
         { id: 'p_chileshe', model: 'independent', type: 'physio', title: 'Physiotherapist', name: 'Chileshe Mutale', phone: '+260 96 000 0104', joined: 2023,
           bio: 'Helps you move better after surgery, injury or stroke. Simple home exercise plans that fit your day.',
           years: 7, languages: ['English', 'Bemba'], areas: ['Roma', 'Rhodes Park', 'Longacres', 'Chelston', 'Kabulonga'], specialties: ['Stroke recovery', 'Knee and back pain', 'After surgery'],
@@ -99,14 +92,7 @@ window.BV = window.BV || {};
           services: [{ id: 'elder-care', rate: 0 }, { id: 'placement', rate: 0 }],
           stats: { rating: 4.9, reviews: 57, visits: 430, responseMin: 15, acceptRate: 100 },
           availability: { days: allDays, shifts: ['morning', 'afternoon', 'evening'], blocked: [], online: true },
-          verification: ver(MAN7.filter(i => i !== 'registration'), 300) },
-        { id: 'p_esther', model: 'managed', type: 'doctor', title: 'Doctor · BUSHEMI Clinic', name: 'Dr. Esther Kunda', phone: '+260 96 000 0204', joined: 2023,
-          bio: 'BUSHEMI Clinic doctor for video consultations. Clear advice, honest about when you need to be seen in person.',
-          years: 9, languages: ['English', 'Nyanja'], areas: BV.data.managedCoverage.slice(), specialties: ['Family medicine'],
-          services: [{ id: 'doctor-video', rate: 0 }],
-          stats: { rating: 4.8, reviews: 31, visits: 210, responseMin: 8, acceptRate: 100 },
-          availability: { days: allDays, shifts: ['morning', 'afternoon', 'evening'], blocked: [], online: true },
-          verification: ver(MAN7, 180, { registration: REG('HPCZ', '2917', 190) }) }
+          verification: ver(MAN7.filter(i => i !== 'registration'), 300) }
       ];
 
       /* ---------- households and people ---------- */
@@ -163,9 +149,6 @@ window.BV = window.BV || {};
       bk({ id: 'b_active', model: 'independent', service: 'nurse-visit', pro: 'p_grace', household: 'h1', recipient: 'r2', date: dk(0), time: nowSlot, address: { label: AD.a2.label, area: AD.a2.area, line: AD.a2.line, landmark: AD.a2.landmark },
         notes: 'Please check blood pressure and sugar. Mum gets a little anxious with new people.', status: 'en_route', travel: { startedAt: now - 4 * 60000, etaMin: 15 },
         timeline: [{ ts: ago(1), label: 'Request sent', by: 'patient' }, { ts: ago(1) + 600000, label: 'Grace Mulenga accepted', by: 'pro' }, { ts: now - 4 * 60000, label: 'Grace Mulenga is on the way', by: 'pro' }] });
-      bk({ id: 'b_video', model: 'independent', service: 'doctor-video', pro: 'p_joseph', household: 'h1', recipient: 'r2', date: dk(2), time: '10:00', address: { label: 'Video call', area: 'Woodlands', line: '', landmark: '' },
-        notes: 'Review of blood pressure readings from the past month.', status: 'confirmed',
-        timeline: [{ ts: ago(2), label: 'Request sent', by: 'patient' }, { ts: ago(2) + 1500000, label: 'Dr. Joseph Phiri accepted', by: 'pro' }] });
       bk({ id: 'b_managed', model: 'managed', service: 'elder-care', pro: 'p_mercy', household: 'h1', recipient: 'r2', date: dk(4), time: '09:00', window: 'morning', address: { label: AD.a2.label, area: AD.a2.area, line: AD.a2.line, landmark: AD.a2.landmark },
         notes: 'Help with bathing and lunch. Likes the radio on.', status: 'confirmed', match: { score: 94, reasons: ['Works in Woodlands', 'Speaks English', 'Verified caregiver'] }, payState: 'held',
         timeline: [{ ts: ago(1, 3), label: 'Request sent', by: 'patient' }, { ts: ago(1, 3) + 60000, label: 'BUSHEMI care team is reviewing and choosing the best professional', by: 'care_team' }, { ts: ago(1, 2), label: 'Mercy Zulu assigned', by: 'care_team' }] });
@@ -199,9 +182,6 @@ window.BV = window.BV || {};
       const M = (b, role, id, name, text, ts) => s.messages.push({ id: U.uid('m'), b, from: { role, id, name }, text, ts, readBy: role === 'patient' ? ['patient'] : [] });
       M('b_active', 'patient', 'u1', 'Mutinta Mwila', 'Hello Grace, my mother is expecting you at 14:00. The gate is green.', now - 90 * 60000);
       M('b_active', 'pro', 'p_grace', 'Grace Mulenga', 'Hello Mutinta, I am on my way. About 15 minutes.', now - 4 * 60000);
-      M('b_video', 'patient', 'u1', 'Mutinta Mwila', 'Doctor, could we start a little later if possible?', ago(1));
-      M('b_video', 'pro', 'p_joseph', 'Dr. Joseph Phiri', 'Yes, 10:00 works for me. See you then.', ago(1) - 3600000);
-      s.messages[s.messages.length - 1].readBy = ['pro', 'patient'];
       M('b_req1', 'patient', 'u4', 'Mary Phiri', 'Good afternoon, my mother prefers the visit after lunch if that is possible.', now - 25 * 60000);
 
       /* ---------- notifications ---------- */

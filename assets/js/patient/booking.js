@@ -267,7 +267,7 @@
     const r = b.report; if (!r) return '';
     const v = r.vitals || {}, vit = [['Blood pressure', v.bp, 'mmHg'], ['Pulse', v.pulse, 'bpm'], ['Temperature', v.temp, '°C'], ['Blood sugar', v.sugar, 'mmol/L'], ['Oxygen', v.spo2, '%']].filter(x => x[1]);
     return C.section('Visit summary') + '<div class="card">' +
-      (r.escalate ? '<div class="callout err" style="margin-bottom:12px">' + I('alert', 'sm') + '<span><b>Follow-up advised</b>' + esc(r.followUpNote || 'Please see a doctor soon.') + '</span></div>' : '') +
+      (r.escalate ? '<div class="callout err" style="margin-bottom:12px">' + I('alert', 'sm') + '<span><b>Follow-up advised</b>' + esc(r.followUpNote || 'Please visit your clinic soon.') + '</span></div>' : '') +
       (vit.length ? '<div class="lab">Readings</div><div class="chips" style="margin-bottom:12px">' + vit.map(x => '<span class="badge neutral">' + x[0] + ' ' + esc(x[1]) + ' ' + x[2] + '</span>').join('') + '</div>' : '') +
       ((r.care || []).length ? '<div class="lab">What was done</div><div class="chips" style="margin-bottom:12px">' + r.care.map(x => '<span class="badge ok">' + I('check', 'sm') + esc(x) + '</span>').join('') + '</div>' : '') +
       (r.observations ? '<div class="lab">What the professional noticed</div><p style="margin-bottom:12px">' + esc(r.observations) + '</p>' : '') +

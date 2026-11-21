@@ -29,7 +29,7 @@
       (cur.meds.length ? C.section('Medicines today', 'Open', 'tab', '/care/meds') + '<div class="card">' + (left.length ? left.slice(0, 3).map(d => '<div class="med-row"><span class="ic-tile green">' + I('pill') + '</span><div class="grow"><b>' + esc(d.med.name) + '</b><small class="muted">' + esc(d.med.dose) + ' · ' + d.time + '</small></div>' + (d.late ? '<span class="badge warn">Due</span>' : '') + '</div>').join('') : '<p class="ok-text">' + I('check', 'sm') + ' All medicines done for today.</p>') + '</div>' : '') +
       (last ? C.section('Last visit') + '<button class="card clickable list-row" style="border:0;padding:14px" data-act="nav" data-v="/booking/' + last.id + '"><span class="ic-tile">' + I('clipboard') + '</span><span class="grow"><b>' + esc(BV.svc(last.service).name) + '</b><small>' + esc(U.relDay(last.date)) + ' · ' + esc((s.pros.find(p => p.id === last.pro) || {}).name || '') + '</small><small>' + esc((last.report.observations || '').slice(0, 90)) + '</small></span>' + I('chev', 'chev') + '</button>' : '') +
       '<div class="card flat mt-3"><div class="row" style="align-items:flex-start">' + I('lock', 'sm') + '<div class="small"><b>Who can see this</b><div class="muted">You and family members you invite. Professionals see allergies, conditions and medicines only after they accept a booking and only if you chose to share. <button class="link" data-act="nav" data-v="/family">Manage access</button></div></div></div></div>' +
-      '<button class="btn secondary block mt-3" data-act="care.share" data-v="' + cur.id + '">' + I('share', 'sm') + 'Share a summary with a doctor</button>';
+      '<button class="btn secondary block mt-3" data-act="care.share" data-v="' + cur.id + '">' + I('share', 'sm') + 'Share a summary</button>';
     return { html, tab: 'care', title: 'Care' };
   }
 
@@ -48,7 +48,7 @@
   }
   BV.act('care.share', v => {
     const r = BV.state().recipients.find(x => x.id === v), t = summaryText(r, BV.state());
-    BV.UI.sheet('<h2>Summary for a doctor</h2><p class="muted small mt-1">Copy this and send it by WhatsApp, SMS or email. You decide who receives it.</p><pre style="white-space:pre-wrap;font:inherit;font-size:.88rem;background:var(--surface-2);border-radius:12px;padding:12px;margin-top:12px">' + esc(t) + '</pre>' +
+    BV.UI.sheet('<h2>Summary to share</h2><p class="muted small mt-1">Copy this and send it by WhatsApp, SMS or email. You decide who receives it.</p><pre style="white-space:pre-wrap;font:inherit;font-size:.88rem;background:var(--surface-2);border-radius:12px;padding:12px;margin-top:12px">' + esc(t) + '</pre>' +
       '<button class="btn primary block mt-3" data-act="care.copy">' + I('doc', 'sm') + 'Copy summary</button>', { label: 'Summary' });
     D.set('share_text', t);
   });
@@ -102,7 +102,7 @@
         arr.slice(-4).reverse().map(x => '<div class="kv"><span>' + esc(U.relDay(U.dkey(new Date(x.ts)))) + (x.by ? ' · ' + esc(x.by) : ' · you') + '</span><b>' + fmt(x) + ' ' + unit + '</b></div>').join('') + '</div>' : '<p class="muted small mt-2">No readings yet.</p>') + '</div>';
     const html = header(cur, '/vitals') + block('Blood pressure', cur.vitals.bp, x => x.a + '/' + x.b, 'mmHg', 'var(--brand)') + block('Blood sugar', cur.vitals.sugar, x => x.a, 'mmol/L', 'var(--green)') + block('Weight', cur.vitals.weight, x => x.a, 'kg', '#5B3FC4') +
       '<button class="btn secondary block" data-act="vt.add">' + I('plus', 'sm') + 'Add a reading</button>' +
-      '<p class="muted small mt-3">Readings from professionals appear here automatically after each visit. Talk to a doctor about any reading that worries you.</p>';
+      '<p class="muted small mt-3">Readings from professionals appear here automatically after each visit. Speak to your clinic about any reading that worries you.</p>';
     return { html, tab: 'care', title: 'Vitals' };
   }
   function vtSheet() {

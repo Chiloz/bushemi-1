@@ -11,7 +11,7 @@
     '<svg viewBox="0 0 220 220" aria-hidden="true"><circle cx="110" cy="112" r="92" fill="#FFF0D3"/><rect x="72" y="36" width="76" height="148" rx="16" fill="#fff" stroke="#0E1A2B" stroke-width="4"/><rect x="84" y="62" width="52" height="30" rx="8" fill="#E8EEFD"/><rect x="84" y="100" width="52" height="12" rx="6" fill="#E3F3E6"/><rect x="84" y="120" width="36" height="12" rx="6" fill="#E3F3E6"/><circle cx="110" cy="158" r="9" fill="#2557E8"/><path d="M168 78a30 30 0 0 1 0 40M180 66a48 48 0 0 1 0 64" stroke="#1B7F2A" stroke-width="5" fill="none" stroke-linecap="round"/></svg>'
   ];
   const SLIDES = [
-    ['Care at home, from people you can trust', 'Nurses, caregivers, doctors and therapists who come to you, or meet you on a call. Every professional is checked by BUSHEMI.'],
+    ['Care at home, from people you can trust', 'Nurses, caregivers, midwives and therapists who come to you, or meet you on a call. Every professional is checked by BUSHEMI.'],
     ['Two ways to get care', 'Let BUSHEMI arrange and manage everything for you, or browse independent professionals and pick the one you like. You always see which is which.'],
     ['Made for how Zambia lives', 'Pay with MTN, Airtel or Zamtel money. Get reminders by SMS or WhatsApp. Works on slow connections, and you can always call us.']
   ];

@@ -33,7 +33,7 @@
         '<p style="margin-top:8px"><span class="tag">' + esc(st.label) + '</span> <span class="tag">' + (next.model === 'managed' ? 'BUSHEMI Care Team' : 'Independent') + '</span></p>' +
         '<div class="row-b"><button class="btn" data-act="nav" data-v="/booking/' + next.id + '">View booking</button></div></section>';
     } else {
-      hero = '<section class="hero"><span class="tag">' + I('heart', 'sm') + 'Care at home</span><h2 style="margin-top:10px">Trusted care, where your family is</h2><p>Nurses, caregivers, doctors and therapists, checked by BUSHEMI.</p><div class="row-b"><button class="btn" data-act="nav" data-v="/find">Find care</button></div></section>';
+      hero = '<section class="hero"><span class="tag">' + I('heart', 'sm') + 'Care at home</span><h2 style="margin-top:10px">Trusted care, where your family is</h2><p>Nurses, caregivers, midwives and therapists, checked by BUSHEMI.</p><div class="row-b"><button class="btn" data-act="nav" data-v="/find">Find care</button></div></section>';
     }
 
     const todoCards = todo.slice(0, 3).map(t => {
