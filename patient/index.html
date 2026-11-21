@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" data-app="patient">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BUSHEMI · Patient and Family</title>
+<meta name="theme-color" content="#2557E8">
+<meta name="description" content="BUSHEMI patient and family prototype: find, book and manage home healthcare.">
+<link rel="icon" href="../assets/img/logo-mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/patient.css">
+</head>
+<body>
+<div class="stage">
+  <div class="device">
+    <div id="ribbon"></div>
+    <div class="app-shell">
+      <div id="banners"></div>
+      <main id="screen" class="screen" tabindex="-1" aria-live="polite"></main>
+      <nav id="tabbar" class="tabbar" aria-label="Main" hidden></nav>
+    </div>
+    <div id="sheet-root"></div>
+    <div id="toast-root" aria-live="polite"></div>
+  </div>
+</div>
+<noscript><p style="padding:24px;font-family:sans-serif">BUSHEMI needs JavaScript to run.</p></noscript>
+<script src="../assets/js/core/util.js"></script>
+<script src="../assets/js/core/icons.js"></script>
+<script src="../assets/js/data/config.js"></script>
+<script src="../assets/js/core/engine.js"></script>
+<script src="../assets/js/domain/rules.js"></script>
+<script src="../assets/js/domain/booking.js"></script>
+<script src="../assets/js/data/seed.js"></script>
+<script src="../assets/js/shared/components.js"></script>
+<script src="../assets/js/shared/views.js"></script>
+<script src="../assets/js/patient/core.js"></script>
+<script src="../assets/js/patient/discover.js"></script>
+<script src="../assets/js/patient/booking.js"></script>
+<script src="../assets/js/patient/onboarding.js"></script>
+<script src="../assets/js/patient/care.js"></script>
+<script src="../assets/js/patient/account.js"></script>
+<script src="../assets/js/patient/app.js"></script>
+</body>
+</html>
